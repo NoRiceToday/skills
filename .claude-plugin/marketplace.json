@@ -1,0 +1,21 @@
+{
+  "name": "noricetoday",
+  "owner": {
+    "name": "Sajjad Ahmad",
+    "url": "https://github.com/NoRiceToday"
+  },
+  "description": "Sajjad Ahmad's curated agent skills — battle-tested internally, promoted on approval.",
+  "plugins": [
+    {
+      "name": "noricetoday-skills",
+      "source": "./",
+      "description": "Curated, internally battle-tested agent skills.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "agent-skills"
+      ]
+    }
+  ]
+}

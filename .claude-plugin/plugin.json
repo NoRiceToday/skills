@@ -1,0 +1,19 @@
+{
+  "name": "noricetoday-skills",
+  "version": "0.1.0",
+  "description": "Sajjad Ahmad's agent skills — battle-tested internally, promoted on approval.",
+  "author": {
+    "name": "Sajjad Ahmad",
+    "url": "https://github.com/NoRiceToday"
+  },
+  "repository": "https://github.com/NoRiceToday/skills",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "agent-skills",
+    "tdd",
+    "code-review"
+  ],
+  "skills": []
+}
