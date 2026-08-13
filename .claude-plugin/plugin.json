@@ -15,5 +15,7 @@
     "tdd",
     "code-review"
   ],
-  "skills": []
+  "skills": [
+    "./skills/engineering/retro"
+  ]
 }
