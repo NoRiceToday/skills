@@ -35,17 +35,6 @@ claude plugin marketplace add NoRiceToday/skills
 claude plugin install noricetoday-skills@noricetoday
 ```
 
-## Layout
-
-```
-skills/
-└── <category>/<name>/SKILL.md   # one folder per skill
-```
-
-Each skill folder contains a `SKILL.md` with YAML frontmatter (`name`,
-`description`, …) and the skill body. Categories group related skills
-(`engineering`, `productivity`, …).
-
 ## Versioning
 
 This repo uses [Changesets](https://github.com/changesets/changesets) for
