@@ -16,6 +16,13 @@
     "code-review"
   ],
   "skills": [
-    "./skills/engineering/retro"
+    "./skills/engineering/retro",
+    "./skills/review/adversarial-review",
+    "./skills/review/code-quality-review",
+    "./skills/review/code-security-review",
+    "./skills/review/decision-conformity-review",
+    "./skills/review/documentation-accuracy-review",
+    "./skills/review/performance-review",
+    "./skills/review/test-coverage-review"
   ]
 }
