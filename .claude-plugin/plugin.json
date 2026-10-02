@@ -16,6 +16,7 @@
     "code-review"
   ],
   "skills": [
+    "./skills/engineering/learn-by-reading",
     "./skills/engineering/retro",
     "./skills/review/adversarial-review",
     "./skills/review/code-quality-review",
