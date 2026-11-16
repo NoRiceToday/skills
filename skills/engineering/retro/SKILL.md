@@ -1,64 +1,77 @@
 ---
 name: retro
-description: Use when the user invokes /retro at the end of a session to reflect on what was done and capture learnings in the right place.
+description: Use when the user asks for a retrospective on the current session — typically at the end of it — to reflect on what was done and capture the learnings in the right place.
 ---
 
 # Retrospective
 
-Short, structured retrospective on the completed session. Claude drafts it — you confirm before anything is written.
+Draft a short, structured retrospective on the session, then route each learning
+to a durable target. Nothing is written until the user approves the draft.
 
 ## Process
 
-1. **Analyze** the conversation history, draft all sections as bullets
-2. **Present** the full draft with proposed actions (format below)
-3. **Wait for approval** — user confirms, cuts, or edits
-4. **Execute** approved actions, following the routing steps below
+1. **Analyze** the conversation history and draft every section as bullets.
+2. **Present** the full draft with the proposed target per learning (format below).
+3. **Wait for approval** — the user confirms, cuts, or edits.
+4. **Execute** only the approved actions, following the routing steps.
 
-## Output Format (bullets only)
+## Output format (bullets only)
 
-```
+```text
 Summary:
 - [what was done, 1-2 bullets]
 
 Went well:
-- [patterns/decisions that saved time or prevented rework]
+- [patterns or decisions that saved time or prevented rework]
 
 Didn't go well:
 - [wrong assumptions, friction, rework triggers]
 
 Learnings:
 - [learning] → [proposed target]
-- [learning] → [proposed target]
 
 → Shall I proceed with these?
 ```
 
-## Routing Each Learning
+## Routing each learning
 
 ### Step 1 — Scope
-Where does this apply?
-- Everywhere → **global**
-- This project → **project**
-- This module/directory → **module**
-- State the chosen scope explicitly before moving on
 
-### Step 2 — Conflict check (before deciding target)
-Read the candidate target file(s) at that scope — never claim "nothing found" without reading:
-- Found outdated or conflicting content → propose to **UPDATE** or **REMOVE** it — target already decided
-- Found nothing relevant → proceed to Step 3
+Decide where the learning applies and state the scope explicitly:
 
-### Step 3 — Type (only if Step 2 found nothing)
+- Everywhere → **user scope**
+- This repository → **project scope**
+- One module or directory → **module scope**
+
+### Step 2 — Conflict check
+
+Read the candidate target files at that scope before deciding anything. Never
+claim "nothing found" without having read them.
+
+- Outdated or conflicting content found → propose to **update** or **remove** it;
+  the target is already decided, skip Step 3.
+- Nothing relevant found → continue to Step 3.
+
+### Step 3 — Type
 
 | Type | Target |
-|---|---|
-| Rule Claude should consistently follow | `CLAUDE.md` at that scope |
-| Situational / contextual guidance | `feedback memory` |
-| Reusable technique or process | `skill` at that scope |
-| Architectural decision / "why we chose X" | `docs` or `project memory` |
-| Factual project state / ongoing context | `project memory` |
+| --- | --- |
+| Rule the agent should consistently follow | instruction file (`CLAUDE.md` / `AGENTS.md`) at that scope |
+| Situational or contextual guidance | agent memory |
+| Reusable technique or process | skill at that scope |
+| Architectural decision, "why we chose X" | ADR or other repo documentation |
+| Factual project state or ongoing context | agent memory |
+| A correction the agent kept repeating | route to a `correct`-style skill if that repo has one (not bundled with this one) — name it, do not run it from here |
+| Stale or contradictory agent memory | route to `/memory-cleanup` |
 
-## Hard Rules
+A `correct` candidate is a mistake that happened twice, not a one-off. When a learning qualifies, the whole target is that repo's correction skill: it reruns the same class across the repo and fixes it at the highest level that holds. Writing the rule into `AGENTS.md` instead is the failure this row exists to prevent.
 
-- **Never write to any file without showing the full draft and getting explicit approval first.**
-- Always do the conflict check (Step 2) before creating anything new.
-- Keep the output minimal — bullets only, no prose.
+## Hard rules
+
+- Never write to a file without showing the full draft and getting explicit approval.
+- This skill is user-invoked. Do not volunteer a retrospective unless the
+  session context explicitly enables proactive offers — and then only offer.
+- Always run the Step 2 conflict check before creating anything new.
+- Keep the output minimal — bullets, no prose.
+- Retro is read-only on the repo. When a learning routes to a correction skill, name it
+  and stop; never start it from here, because it writes commits.

@@ -5,6 +5,19 @@
 Curated agent skills I've used internally and promoted on approval. Each skill
 has been battle-tested in real workflows before it ships here.
 
+## What's inside
+
+**Review suite.** `adversarial-review` fans out eight lenses over a diff — code
+quality, tests, security, performance, docs, decision conformity, complexity, and
+comment placement — and synthesizes one handover. Each lens also works standalone.
+
+**Engineering skills.** MR/PR creation and babysitting, forge access for GitHub and
+GitLab, commit messages, issue context, review-comment publishing, retrospectives,
+agent-memory cleanup, prose de-slopping, and learning a codebase by reading it.
+
+**Agents.** `adversarial-reviewer` is the subagent form of the review suite. It is
+installed by the Claude Code plugin; `npx skills` installs skills only.
+
 ## Quickstart
 
 Install via the [skills.sh](https://skills.sh) CLI (works with Claude Code,

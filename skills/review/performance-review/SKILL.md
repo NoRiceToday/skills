@@ -1,6 +1,6 @@
 ---
 name: performance-review
-description: "Review lens for performance issues, bottlenecks, and resource efficiency. Use standalone on local changes, or as a lens used by adversarial-review."
+description: "Review lens for performance issues, bottlenecks, and resource efficiency. Use standalone on local changes, or as a lens applied by adversarial-review."
 metadata:
   adversarial-lens: true
 ---

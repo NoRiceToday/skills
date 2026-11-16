@@ -5,7 +5,7 @@ description: Teach a technology or codebase by reading real code, separating bes
 
 # Learn by reading
 
-Version 0.1.
+Version 1.5.
 
 Teach by working through real code. The learner reads and judges; the agent explains first, then shows the code. Deliver lessons in the learner's language.
 
@@ -21,8 +21,8 @@ Completion: the profile names expertise, knowns, unknowns, and language.
 
 Every lesson takes one shape, in order: **Konzept → Code → Erkennung → Warum → Idiomatisch → Repo**. Template in [`references/lesson-template.md`](references/lesson-template.md).
 
-- **Konzept** first: the idea in plain language, before any code. One concept per lesson.
-- **Code**, labelled: what the snippet is and where it lives (agent, tool, instruction provider, callback, workflow). An unlabelled snippet cannot be judged.
+- **Konzept** first: the idea in plain language, before any code. One concept per lesson. Anchor a new API to the concept the learner already knows (a system prompt, a callback hook) before explaining its mechanics.
+- **Code**, labelled: what the snippet is and where it lives (agent, tool, instruction provider, callback, workflow). An unlabelled snippet cannot be judged. State the piece's runtime contract too: what it takes in, what it produces, when it runs, and what triggers it or how often.
 - **Erkennung**: the concrete cue that identifies the pattern in code. This is the part learners cannot guess.
 - **Warum**: the consequence. What breaks, what it costs.
 - **Idiomatisch**: the corrected version beside the smell.
@@ -41,7 +41,7 @@ Close a lesson by asking the learner to explain the concept back in their own wo
 Run the loop through the session, not once. Format and stages in [`references/feedback-loop.md`](references/feedback-loop.md).
 
 - **Detect** confusion, criticism, repeated questions, and pushback as they appear. Treat "ich verstehe das nicht" as a bug in the skill.
-- **Ask** the learner for feedback at natural pauses: after a lesson, after a format change.
+- **Ask** the learner for feedback at natural pauses: after a lesson, after a format change. Deliver at least one full lesson before the first feedback prompt; ask about the lesson, never before it exists.
 - **Log** each signal with the skill version.
 - **Consolidate** recurring signals into concrete edits, then bump the version. Collect during a lesson; edit between lessons.
 
@@ -54,8 +54,18 @@ The topics a lesson teaches (domain smells, worked examples, facts) live with th
 ## Principles
 
 - One concept per lesson.
+- Present the default case first, then the condition that forces the special case.
 - Explain before testing.
+- Walk one concrete instance end to end before showing the code that implements it.
 - Label every code block with what it is and where it lives.
-- Pair every smell with its idiomatic opposite and the reason.
+- Pair every smell with its idiomatic opposite and the reason; pair every mechanism with the design trade-off it resolves.
 - Keep the learner's decisions, the code's observed behaviour, and the agent's recommendations distinct.
+- When a word names more than one object, separate the objects before using the word.
+- Trace where each value goes (input, return, side store) before showing the mechanism.
+- State why a mechanism exists (its purpose) before explaining how it works.
+- Define a domain term the first time it appears.
+- Introduce a component by its role or an analogy before its interface.
+- Unpack a rule or slogan into its observable clauses; never ship the compressed form alone.
+- Separate mechanisms that run on different axes; do not describe two loops as one.
+- Give every numeric bound its unit, and state who authors each field (model, tool, or copied).
 - Measure success by understanding, not by code typed.

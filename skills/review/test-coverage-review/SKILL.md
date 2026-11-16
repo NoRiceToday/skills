@@ -1,6 +1,6 @@
 ---
 name: test-coverage-review
-description: "Review lens for test coverage, edge cases, and regression risk. Use standalone on local changes, or as a lens used by adversarial-review. Always-on lens when code paths are added or changed."
+description: "Review lens for test coverage, edge cases, and regression risk. Use standalone on local changes, or as a lens applied by adversarial-review. Always-on lens when code paths are added or changed."
 metadata:
   adversarial-lens: true
 ---
@@ -11,7 +11,7 @@ Use this as a review lens for local diffs, MRs, PRs, or branches when code paths
 
 ## Lens mode vs standalone mode
 
-**Lens mode** (invoked by `adversarial-review`): a review package path is provided in the dispatch prompt as `REVIEW_PACKAGE_PATH` (or described as "the review package"). Read it; do NOT run your own `git diff` or derive your own diff range. Normalize all findings to the orchestrator's P0-P3 + bucket taxonomy (bucket `missing-test` for this lens). Do not emit the standalone severity scale below.
+**Lens mode** (invoked by `adversarial-review`): a review package path is provided in the dispatch prompt as `REVIEW_PACKAGE_PATH` (or described as "the review package"). Read it; do NOT run your own `git diff` or derive your own diff range. Normalize all findings to the orchestrator's P0-P3 + bucket taxonomy (`missing-test` for coverage/effectiveness, `maintainability` for unnecessary test machinery). Do not emit the standalone severity scale below.
 
 **Standalone mode** (invoked directly): analyze the current branch against `origin/HEAD` using `git diff --name-only origin/HEAD...` and `git diff origin/HEAD...`. Use the standalone severity scale below.
 
@@ -35,6 +35,7 @@ Focus on whether the change's new and modified code paths are actually tested, a
 - Do tests verify real behavior, not mocks of internal logic?
 - Are mocks limited to external boundaries (HTTP, DB, filesystem, time)?
 - Are assertions specific (check the actual result) or tautological (assert `True`)?
+- Would the test fail if the behavior its name claims to check broke?
 
 ### Regression risk
 
@@ -46,11 +47,13 @@ Focus on whether the change's new and modified code paths are actually tested, a
 
 - Are test names descriptive of the behavior they verify?
 - Do tests arrange-act-assert clearly?
+- Could the same behavior be checked with simpler tests instead of extra fixtures, helpers, or a new testing dependency? Name the equivalent smaller check before reporting test overengineering.
 - Is test output pristine (no warnings, no noise)?
 
 ## Exclusions
 
 Do not report:
+
 - Coverage percentages as a number (we don't measure; we reason).
 - Stylistic test improvements with no correctness/maintainability impact.
 - Missing tests for trivial getters/setters or pure pass-throughs.
@@ -64,7 +67,7 @@ Do not report:
 
 ## Output (lens mode)
 
-Return findings in the orchestrator's format. Use bucket `missing-test`. Priority guidance:
+Return findings in the orchestrator's format. Use `missing-test` for coverage/effectiveness gaps and `maintainability` for unnecessary test machinery. Priority guidance:
 
 - P0: untested code path that will break in production (error path, known risky input).
 - P1: untested new public API or untested shared-code change.

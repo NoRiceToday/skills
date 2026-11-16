@@ -1,13 +1,13 @@
 ---
 name: code-security-review
-description: "Perform a focused security review of current branch changes and report actionable vulnerabilities across the unified severity scale."
+description: "Perform a focused security review of current branch changes against origin/HEAD and report actionable vulnerabilities across the unified severity scale."
 metadata:
   adversarial-lens: true
 ---
 
 # Code Security Review
 
-Use this skill for a standalone security audit of local branch changes, or as a lens used by `adversarial-review`.
+Use this skill for a standalone security audit of local branch changes, or as a lens applied by `adversarial-review`.
 
 ## Goal
 

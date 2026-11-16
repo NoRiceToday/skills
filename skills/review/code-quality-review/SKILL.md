@@ -1,6 +1,6 @@
 ---
 name: code-quality-review
-description: "Intent-first review lens for code quality, maintainability, and adherence to best practices. Infers author intent, drills down from changed entry-points into downstream files, and reports per-file and per-function findings. Use standalone on local changes, or as a lens used by adversarial-review."
+description: "Intent-first review lens for code quality, maintainability, and adherence to best practices. Infers author intent, drills down from changed entry-points into downstream files, and reports per-file and per-function findings. Use standalone on local changes, or as a lens applied by adversarial-review."
 metadata:
   adversarial-lens: true
 ---
@@ -70,6 +70,7 @@ Use the checklist below while writing the intent analysis, the per-file breakdow
 - File organization follows existing repo patterns.
 - Unrelated resources are not mixed in one file.
 - Directory structure matches established conventions.
+- **Was anything here removable before it was added?** Name what the change could have deleted or reused instead of introducing, and treat "nothing" as an answer that needs evidence.
 
 ### Error handling and edge cases
 

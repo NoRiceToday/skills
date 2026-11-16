@@ -1,6 +1,6 @@
 ---
 name: documentation-accuracy-review
-description: "Review lens for documentation accuracy, completeness, and consistency with implementation. Use standalone on local changes, or as a lens used by adversarial-review."
+description: "Review lens for documentation accuracy, completeness, and consistency with implementation. Use standalone on local changes, or as a lens applied by adversarial-review."
 metadata:
   adversarial-lens: true
 ---

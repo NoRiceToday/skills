@@ -26,6 +26,9 @@ Append a row to the log below. One row per signal. Keep the trigger in the learn
 | 2026-10-02 | "ich check gar nix" | Concept and cue came after the question; snippets were unlabelled | Lesson arc fixed to Konzept-first; labels required | 0.1 |
 | 2026-10-02 | "woran erkenne ich das?" | No recognition cue per smell | Erkennung step added to the arc and the catalogue | 0.1 |
 
+These two rows are kept as format examples. Later signals are already folded into
+the principles in [`SKILL.md`](../SKILL.md) rather than replayed here.
+
 ## 4. Consolidate
 
 When a signal repeats, make one concrete edit to the skill: a new cue, a new principle, a reordered step, a removed no-op. Bump the version at the top of `SKILL.md` and record the change in the log row. Edit between lessons, never during one; collect first, then improve.
