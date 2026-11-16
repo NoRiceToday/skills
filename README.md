@@ -12,8 +12,8 @@ quality, tests, security, performance, docs, decision conformity, complexity, an
 comment placement — and synthesizes one handover. Each lens also works standalone.
 
 **Engineering skills.** MR/PR creation and babysitting, forge access for GitHub and
-GitLab, commit messages, issue context, review-comment publishing, retrospectives,
-agent-memory cleanup, prose de-slopping, and learning a codebase by reading it.
+GitLab, issue context, review-comment publishing, retrospectives, agent-memory
+cleanup, and learning a codebase by reading it.
 
 **Agents.** `adversarial-reviewer` is the subagent form of the review suite. It is
 installed by the Claude Code plugin; `npx skills` installs skills only.
